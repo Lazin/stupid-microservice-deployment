@@ -1,0 +1,9 @@
+---
+# Starts latency-prototype
+- hosts: all
+  remote_user: ubuntu
+  sudo: yes
+  tasks:
+    # Start server
+    - name: start server
+      action: supervisorctl name=latency-prototype state=started

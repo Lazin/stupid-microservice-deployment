@@ -27,10 +27,13 @@
           - jinja2
           - numpy
           - pandas
+          - supervisor
             
     # Install project from git repository
     - name: install main prject
       action: git repo=https://github.com/Lazin/stupid-python-micro-service.git
                   dest=/etc/latency
 
-    # Run script (TODO: daemonize)
+    # Configure and run server
+    - name: copy supervisord config
+      action: copy src=supervisord.conf dest=/etc/supervisord.conf

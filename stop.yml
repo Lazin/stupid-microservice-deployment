@@ -1,0 +1,9 @@
+---
+# Stops latency-prototype
+- hosts: all
+  remote_user: ubuntu
+  sudo: yes
+  tasks:
+    # Start server
+    - name: stop server
+      action: supervisorctl name=latency-prototype state=stopped
