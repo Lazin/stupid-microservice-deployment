@@ -37,4 +37,6 @@
     # Configure and run server
     - name: copy supervisord config
       action: copy src=supervisord.conf dest=/etc/supervisord.conf
+
+    - name: start supervisord
       action: command supervisord
