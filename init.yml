@@ -1,0 +1,36 @@
+---
+# Instal all apps and scripts needed for latency prototype
+- hosts: all
+  vars:
+      http_port: 8080
+  remote_user: ubuntu
+  sudo: yes
+  tasks:
+    - name: update cache
+      apt: update_cache=yes
+
+    # Packages to install other packages and to fetch code from git repository
+    - name: install essential packages from ubuntu repository
+      action: apt pkg={{ item }} state=latest
+      with_items:
+          - git
+          - build-essential
+          - python-dev
+          - python-setuptools
+          - python-pip
+        
+    # Essential python packages. No virtual-env and no per-host configuration.
+    - name: install python packages from pip repository
+      action: pip name={{ item }}
+      with_items:
+          - cherrypy
+          - jinja2
+          - numpy
+          - pandas
+            
+    # Install project from git repository
+    - name: install main prject
+      action: git repo=https://github.com/Lazin/stupid-python-micro-service.git
+                  dest=/etc/latency
+
+    # Run script (TODO: daemonize)
