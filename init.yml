@@ -18,7 +18,7 @@
           instance_type: "{{ aws_instance_type }}"
           image: "{{ aws_image }}"
           wait: True
-          exact_count: 1
+          exact_count: 4
           count_tag:
               Name: "{{ proj_name }}"
           instance_tags:
